@@ -19,8 +19,14 @@ RSpec.describe Course do
   end
 
   describe "#full?" do
-    it "can show if the course is at capacity" do
+    it "can enroll students and show capacity" do
       expect(@course.full?).to be false
+
+      @course.enroll(@student1)
+      @course.enroll(@student2)
+      
+      expect(@course.students).to eq([@student1, @student2])
+      expect(@course.full?).to be true
     end
   end
 end

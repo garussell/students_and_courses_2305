@@ -7,10 +7,15 @@ class Course
     @name = name
     @capacity = capacity
     @students = []
-
+    @full = false
   end
 
   def full?
-    false
+    return @full = true if @students.count >= @capacity
+    @full
+  end
+
+  def enroll(student)
+    @students << student
   end
 end
