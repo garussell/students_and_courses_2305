@@ -37,22 +37,24 @@ RSpec.describe GradeBook do
     end
   end
 
-  describe "#list_all_students" do
+  describe "#list_all_students(course)" do
     it "can list all of the students in the courses" do
+      # add courses
+      @grade_book_1.add_course(@calculus)
+      @grade_book_1.add_course(@history)
+      @grade_book_2.add_course(@band)
       # enroll morgan
       @calculus.enroll(@morgan)
       @history.enroll(@morgan)
       # enroll jordan
       @calculus.enroll(@jordan)
       @history.enroll(@jordan)
-     # enroll franky
+      # enroll franky
       @band.enroll(@franky)
 
-      expect(@grade_book_1.list_all_students).to eq({
-        @calculus => [@morgan, @jordan],
-        @history => [@morgan, @jordan],
-        @band => [@franky]
-      })
+      expect(@grade_book_1.list_all_students(@calculus)).to eq([@morgan, @jordan])
+      expect(@grade_book_1.list_all_students(@history)).to eq([@morgan, @jordan])
+      expect(@grade_book_2.list_all_students(@band)).to eq([@franky])
     end
 
   end
