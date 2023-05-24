@@ -10,4 +10,10 @@ class GradeBook
   def add_course(course)
     @courses << course
   end
+
+  def list_all_students(course)
+    course.students.map do |student|
+      student.name
+    end
+  end
 end

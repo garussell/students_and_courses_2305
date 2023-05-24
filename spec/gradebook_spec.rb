@@ -52,9 +52,9 @@ RSpec.describe GradeBook do
       # enroll franky
       @band.enroll(@franky)
 
-      expect(@grade_book_1.list_all_students(@calculus)).to eq([@morgan, @jordan])
-      expect(@grade_book_1.list_all_students(@history)).to eq([@morgan, @jordan])
-      expect(@grade_book_2.list_all_students(@band)).to eq([@franky])
+      expect(@grade_book_1.list_all_students(@calculus)).to eq(["Morgan", "Jordan"])
+      expect(@grade_book_1.list_all_students(@history)).to eq(["Morgan", "Jordan"])
+      expect(@grade_book_2.list_all_students(@band)).to eq(["Franky"])
     end
 
   end
