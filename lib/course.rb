@@ -7,5 +7,10 @@ class Course
     @name = name
     @capacity = capacity
     @students = []
+
+  end
+
+  def full?
+    false
   end
 end
