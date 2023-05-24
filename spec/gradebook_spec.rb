@@ -57,5 +57,19 @@ RSpec.describe GradeBook do
       expect(@grade_book_2.list_all_students(@band)).to eq(["Franky"])
     end
 
+    describe "#students_below(threshold)" do
+      it "can return a list of students whose grades are below a given threshold" do
+        @grade_book_1.add_course(@calculus)
+        @grade_book_1.add_course(@history)
+
+        @calculus.enroll(@morgan)
+        @calculus.enroll(@jordan)
+
+        @morgan.log_score(89)
+        @jordan.log_score(78)
+
+        expect(@grade_book_1.students_below(80)).to eq([@jordan])
+      end
+    end
   end
 end
