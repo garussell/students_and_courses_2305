@@ -9,9 +9,9 @@ RSpec.describe GradeBook do
     @grade_book_1 = GradeBook.new("Prof Smally")
     @grade_book_2 = GradeBook.new("Prof Nutty")
     # courses
-    @course1 = Course.new("Calculus", 2) 
-    @course2 = Course.new("History", 3)
-    @course3 = Course.new("Band", 4)
+    @calculus = Course.new("Calculus", 2) 
+    @history = Course.new("History", 3)
+    @band = Course.new("Band", 4)
     # students
     @morgan = Student.new({name: "Morgan", age: 21})
     @jordan = Student.new({name: "Jordan", age: 29}) 
@@ -26,21 +26,32 @@ RSpec.describe GradeBook do
     end
   end
 
+  describe "#add_course" do
+    it "can add courses to the grade book" do
+      @grade_book_1.add_course(@calculus)
+      @grade_book_1.add_course(@history)
+      @grade_book_2.add_course(@band)
+
+      expect(@grade_book_1.courses).to eq([@calculus, @history])
+      expect(@grade_book_2.courses).to eq([@band])
+    end
+  end
+
   describe "#list_all_students" do
     it "can list all of the students in the courses" do
       # enroll morgan
-      @course1.enroll(@morgan)
-      @course2.enroll(@morgan)
+      @calculus.enroll(@morgan)
+      @history.enroll(@morgan)
       # enroll jordan
-      @course1.enroll(@jordan)
-      @course2.enroll(@jordan)
+      @calculus.enroll(@jordan)
+      @history.enroll(@jordan)
      # enroll franky
-      @course3.enroll(@franky)
+      @band.enroll(@franky)
 
       expect(@grade_book_1.list_all_students).to eq({
-        @course1 => [@morgan, @jordan],
-        @course2 => [@morgan, @jordan],
-        @course3 => [@franky]
+        @calculus => [@morgan, @jordan],
+        @history => [@morgan, @jordan],
+        @band => [@franky]
       })
     end
 
