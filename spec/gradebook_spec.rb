@@ -67,8 +67,10 @@ RSpec.describe GradeBook do
 
         @morgan.log_score(89)
         @jordan.log_score(78)
+        @jordan.log_score(45)
 
-        expect(@grade_book_1.students_below(80)).to eq([@jordan])
+        expect(@grade_book_1.students_below(65)).to eq([@jordan])
+        expect(@grade_book_1.students_below(90)).to eq([@morgan, @jordan])
       end
     end
   end

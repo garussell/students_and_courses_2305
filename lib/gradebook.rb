@@ -16,4 +16,12 @@ class GradeBook
       student.name
     end
   end
+
+  def students_below(threshold)
+    @courses.flat_map do |course|
+      course.students.find_all do |student|
+        student.grade < threshold
+      end
+    end
+  end
 end
